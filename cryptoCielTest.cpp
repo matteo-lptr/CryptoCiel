@@ -1,5 +1,4 @@
-// RsaCiel.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
-//
+/* cryptoCielTest.cpp */
 
 #include <iostream>
 #include "RsaGestion.h"

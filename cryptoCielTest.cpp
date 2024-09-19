@@ -17,11 +17,16 @@ int main()
     AES.DecryptFileAES256("EncryptAES.txt", "DecryptAES.txt");
 
     RsaGestion RSA;
-    RSA.generationClef("RSAPublic.pem", "RSAPrive.pem", 4096);
-    std::string MessageEncrypt = "Chien Chat Avion ";
-    std::string MessageCrypt = RSA.chiffrementRsa(MessageEncrypt);
-    std::cout << MessageCrypt << std::endl;
-    std::string MessageDecrypt = RSA.dechiffrementRsa(MessageCrypt);
-    std::cout << MessageDecrypt << std::endl;
+    RSA.generationClef("RSAPublic.pem", "RSAPrive.pem", 2048);
+    
+    /* 
+        std::string MessageEncrypt = "Chien Chat Avion ";
+        std::string MessageCrypt = RSA.chiffrementRsa(MessageEncrypt);
+        std::cout << MessageCrypt << std::endl;
+        std::string MessageDecrypt = RSA.dechiffrementRsa(MessageCrypt);
+        std::cout << MessageDecrypt << std::endl;
+     */
 
+    RSA.chargementClefs("RSAPublic.pem", "RSAPrive.pem");
+    RSA.chiffreDansFichier("")
 }

@@ -1,5 +1,3 @@
-/* cryptoCielTest.cpp */
-
 #include <iostream>
 #include "RsaGestion.h"
 #include "Hashgestion.h"
@@ -15,7 +13,15 @@ int main()
     AesGestion AES;
     AES.GenerateAESKey();
     AES.SaveAESKeyToFile("ClefAES.txt");
-    AES.EncryptFileAES256("ClefAES.txt", "EncryptAES.txt");
+    AES.EncryptFileAES256("Mess.txt", "EncryptAES.txt");
     AES.DecryptFileAES256("EncryptAES.txt", "DecryptAES.txt");
+
+    RsaGestion RSA;
+    RSA.generationClef("RSAPublic.pem", "RSAPrive.pem", 4096);
+    std::string MessageEncrypt = "Chien Chat Avion ";
+    std::string MessageCrypt = RSA.chiffrementRsa(MessageEncrypt);
+    std::cout << MessageCrypt << std::endl;
+    std::string MessageDecrypt = RSA.dechiffrementRsa(MessageCrypt);
+    std::cout << MessageDecrypt << std::endl;
 
 }

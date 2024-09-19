@@ -9,9 +9,11 @@
 int main()
 {
     HashGestion LM;
-    std::string File = "Crypto.txt";
-    std::cout << "SHA256 Hash: " << LM.CalculateSHA256(File) << std::endl;
-    return(0);
+    std::string monMessageHash = "Crypto.txt";
+    std::cout << LM.CalculateSHA256(monMessageHash) << std::endl;
 
+    AesGestion AES;
+    AES.GenerateAESKey();
+    AES.SaveAESKeyToFile("ClefAES.txt");
 
 }

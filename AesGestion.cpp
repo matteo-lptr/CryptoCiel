@@ -16,6 +16,10 @@ AesGestion::AesGestion()
 	
 }
 
+AesGestion::~AesGestion()
+{
+}
+
 
 /**
  * \brief generation d'une clef AES 
@@ -61,7 +65,7 @@ void AesGestion::LoadAESKeyFromFile(const std::string& filename)
     std::ifstream ifs(filename, std::ios::binary);
     if (!ifs)
     {
-        std::cerr << "Erreur lors de l'ouverture du fichier d'entrée." << std::endl;
+        std::cerr << "Erreur lors de l'ouverture du fichier d'entrÃ©e." << std::endl;
         return;
     }
 
@@ -82,7 +86,7 @@ void AesGestion::LoadAESKeyFromFile(const std::string& filename)
  */
 void AesGestion::EncryptFileAES256(const std::string& inputFile, const std::string& outputFile)
 {
-    // Générez un IV aléatoire
+    // GÃ©nÃ©rez un IV alÃ©atoire
     AutoSeededRandomPool rng;
     rng.GenerateBlock(this->iv, sizeof(this->iv));
 
@@ -99,11 +103,11 @@ void AesGestion::EncryptFileAES256(const std::string& inputFile, const std::stri
     //std::cout << "E+++++++" << std::hex << reinterpret_cast<const short*>(this->iv) << std::endl;
 
 
-    // Initialisez le chiffreur avec la clé et l'IV
+    // Initialisez le chiffreur avec la clÃ© et l'IV
     CBC_Mode<AES>::Encryption encryptor;
     encryptor.SetKeyWithIV(this->aesKey, sizeof(this->aesKey), this->iv);
 
-    // Lisez le contenu du fichier dans une chaîne de caractères
+    // Lisez le contenu du fichier dans une chaÃ®ne de caractÃ¨res
     std::string fileContent;
     FileSource(inputFile.c_str(), true,
         new StringSink(fileContent)
@@ -120,7 +124,7 @@ void AesGestion::EncryptFileAES256(const std::string& inputFile, const std::stri
     // Ouvrez le fichier de sortie en mode binaire
     std::ofstream file(outputFile.c_str(), std::ios::binary);
 
-    // IV en préfixe
+    // IV en prÃ©fixe
     file.write(reinterpret_cast<const char*>(this->iv), sizeof(this->iv));
 
     //Donnee chiffre apres
@@ -171,7 +175,7 @@ void AesGestion::DecryptFileAES256(const std::string& inputFile, const std::stri
             new FileSink(outputFile.c_str()), BlockPaddingSchemeDef::PKCS_PADDING)
     );
 
-    //std::cout << "Fin Déchiffrement AES-256" << std::endl;
+    //std::cout << "Fin DÃ©chiffrement AES-256" << std::endl;
 }
 
 
@@ -184,11 +188,11 @@ void AesGestion::DecryptFileAES256(const std::string& inputFile, const std::stri
 std::string AesGestion::encrypt_aes256_to_base64(const std::string& plaintext) {
     AutoSeededRandomPool rng;
     rng.GenerateBlock(this->iv, sizeof(this->iv));
-    // Initialiser le chiffreur avec la clé et l'IV
+    // Initialiser le chiffreur avec la clÃ© et l'IV
     CBC_Mode<AES>::Encryption encryptor;
     encryptor.SetKeyWithIV(this->aesKey, sizeof(this->aesKey), this->iv);
 
-    // Ajouter le padding PKCS7 aux données
+    // Ajouter le padding PKCS7 aux donnÃ©es
     std::string paddedData;
     StringSource(plaintext, true,
         new StreamTransformationFilter(encryptor,
@@ -199,10 +203,10 @@ std::string AesGestion::encrypt_aes256_to_base64(const std::string& plaintext) {
 
 
 
-    // Concaténer l'IV avec les données rembourrées
+    // ConcatÃ©ner l'IV avec les donnÃ©es rembourrÃ©es
     std::string ivAndPaddedData = std::string(reinterpret_cast<const char*>(this->iv), AES::BLOCKSIZE) + paddedData;
 
-    // Convertir les données concaténées en base64
+    // Convertir les donnÃ©es concatÃ©nÃ©es en base64
     std::string base64Cipher;
     StringSource(ivAndPaddedData, true,
         new Base64Encoder(
@@ -215,14 +219,14 @@ std::string AesGestion::encrypt_aes256_to_base64(const std::string& plaintext) {
 
 }
 /**
- * Dechiffrer de l'AES256 avec l'IV en préambule le tout au format base64.
+ * Dechiffrer de l'AES256 avec l'IV en prÃ©ambule le tout au format base64.
  * 
  * \param base64_encoded_data : string en base 64 contenant l'IV + message chiffre
- * \return message déchiffre
+ * \return message dÃ©chiffre
  */
 std::string AesGestion::decrypt_aes256_from_base64(const std::string& base64_encoded_data) {
-    // Décoder la chaîne base64
-     // Décoder la chaîne base64
+    // DÃ©coder la chaÃ®ne base64
+     // DÃ©coder la chaÃ®ne base64
     std::string decoded;
     //std::cout << "----  base64_encoded_data " << base64_encoded_data << std::endl;
 
@@ -231,7 +235,7 @@ std::string AesGestion::decrypt_aes256_from_base64(const std::string& base64_enc
 
     
 
-    // Extraire l'IV et le message chiffré
+    // Extraire l'IV et le message chiffrÃ©
     std::string iv = decoded.substr(0, AES::BLOCKSIZE);  
 
 
@@ -261,11 +265,11 @@ std::string AesGestion::decrypt_aes256_from_base64(const std::string& base64_enc
     //std::cout << "---- ciphertext " << encodedChiffre << std::endl;
     /** Fin debug******************************************************************************************************/
 
-    // Initialiser le déchiffreur avec la clé et l'IV
+    // Initialiser le dÃ©chiffreur avec la clÃ© et l'IV
     CBC_Mode<AES>::Decryption decryptor;
     decryptor.SetKeyWithIV(this->aesKey, sizeof(this->aesKey), this->iv);
 
-    // Déchiffrer les données
+    // DÃ©chiffrer les donnÃ©es
     std::string decryptedData;
     StringSource(ciphertext, true,
         new StreamTransformationFilter(decryptor,

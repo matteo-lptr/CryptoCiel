@@ -15,5 +15,7 @@ int main()
     AesGestion AES;
     AES.GenerateAESKey();
     AES.SaveAESKeyToFile("ClefAES.txt");
+    AES.EncryptFileAES256("ClefAES.txt", "EncryptAES.txt");
+    AES.DecryptFileAES256("EncryptAES.txt", "DecryptAES.txt");
 
 }

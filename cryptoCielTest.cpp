@@ -17,9 +17,9 @@ int main()
     AES.DecryptFileAES256("EncryptAES.txt", "DecryptAES.txt");
 
     RsaGestion RSA;
-    RSA.generationClef("RSAPublic.pem", "RSAPrive.pem", 2048);
     
     /* 
+        RSA.generationClef("RSAPublic.pem", "RSAPrive.pem", 2048);
         std::string MessageEncrypt = "Chien Chat Avion ";
         std::string MessageCrypt = RSA.chiffrementRsa(MessageEncrypt);
         std::cout << MessageCrypt << std::endl;
@@ -27,6 +27,8 @@ int main()
         std::cout << MessageDecrypt << std::endl;
      */
 
-    RSA.chargementClefs("RSAPublic.pem", "RSAPrive.pem");
-    RSA.chiffreDansFichier("")
+    RSA.generationClef("RSAPublic.pem", "RSAPrive.pem", 2048);
+    RSA.chiffreDansFichier("RSADonne.txt", "RSAChiffre.txt");
+    RSA.dechiffrementFichier("RSADonne.txt", "RSADechiffre.txt", 2048);
+
 }

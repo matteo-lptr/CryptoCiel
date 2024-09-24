@@ -38,13 +38,20 @@ int main()
         std::cout << MessageDecrypt << std::endl;
      
                 * RSA - (6.2) 2eme Programmes
+                
         RSA.chargementClefs("MatteoRSAPublic.pem", "MatteoRSAPrive.pem")
         RSA.chiffreDansFichier("MatteoRSADonnee.txt", "MatteoRSAChiffre.txt");
         RSA.dechiffrementFichier("MatteoRSADonnee.txt", "MatteoRSADechiffre.txt", 2048);
-        */
+
+                * RSA - (6.3) 3eme Programmes
 
         RSA.chargementClefs("YouennRSAPublic.pem", "YouennRSAPrive.pem");
-        /*RSA.chiffrementFichier("MatteoRSADonnee.txt", "MatteoRSAChiffre.txt", 2048);*/
+        RSA.chiffrementFichier("MatteoRSADonnee.txt", "MatteoRSAChiffre.txt", 2048);
         RSA.dechiffrementFichier("YouennRSAChiffre.txt", "MatteoRSADechiffre.txt", 2048);
+        */
+
+        RSA.chargementClefs("MatteoRSAPublic.pem", "MatteoRSAPrive.pem");
+        RSA.chiffrementFichier("MatteoRSADonneeBinaire.txt", "MatteoRSAChiffreBinaire.txt", 2048);
+        RSA.dechiffrementFichier("MatteoRSAChiffreBinaire.txt", "MatteoRSADechiffreBinaire.txt", 2048),
 
 }

@@ -6,29 +6,45 @@
 
 int main()
 {
-    HashGestion LM;
-    std::string monMessageHash = "Crypto.txt";
-    std::cout << LM.CalculateSHA256(monMessageHash) << std::endl;
 
-    AesGestion AES;
-    AES.GenerateAESKey();
-    AES.SaveAESKeyToFile("ClefAES.txt");
-    AES.EncryptFileAES256("Mess.txt", "EncryptAES.txt");
-    AES.DecryptFileAES256("EncryptAES.txt", "DecryptAES.txt");
+        /*
+                * SHA256 - (4) Question 2,3,4,5
 
-    RsaGestion RSA;
-    
-    /* 
-        RSA.generationClef("RSAPublic.pem", "RSAPrive.pem", 2048);
+        HashGestion LM;
+        std::string monMessageHash = "Crypto.txt";
+        std::cout << LM.CalculateSHA256(monMessageHash) << std::endl;
+        
+        
+        
+                * AES - (5) Question 6,7,8,9
+                
+        AesGestion AES;
+        AES.GenerateAESKey();
+        AES.SaveAESKeyToFile("ClefAES.txt");
+        AES.EncryptFileAES256("Mess.txt", "EncryptAES.txt");
+        AES.DecryptFileAES256("EncryptAES.txt", "DecryptAES.txt");
+     
+                * RSA - (6.1) 1er Programme
+        */
+
+        RsaGestion RSA;
+        RSA.generationClef("MatteoRSAPublic.pem", "MatteoRSAPrive.pem", 2048);
+
+        /*
         std::string MessageEncrypt = "Chien Chat Avion ";
         std::string MessageCrypt = RSA.chiffrementRsa(MessageEncrypt);
         std::cout << MessageCrypt << std::endl;
         std::string MessageDecrypt = RSA.dechiffrementRsa(MessageCrypt);
         std::cout << MessageDecrypt << std::endl;
-     */
+     
+                * RSA - (6.2) 2eme Programmes
+        RSA.chargementClefs("MatteoRSAPublic.pem", "MatteoRSAPrive.pem")
+        RSA.chiffreDansFichier("MatteoRSADonnee.txt", "MatteoRSAChiffre.txt");
+        RSA.dechiffrementFichier("MatteoRSADonnee.txt", "MatteoRSADechiffre.txt", 2048);
+        */
 
-    RSA.generationClef("RSAPublic.pem", "RSAPrive.pem", 2048);
-    RSA.chiffreDansFichier("RSADonne.txt", "RSAChiffre.txt");
-    RSA.dechiffrementFichier("RSADonne.txt", "RSADechiffre.txt", 2048);
+        RSA.chargementClefs("MatteoRSAPublic.pem", "MatteoRSAPrive.pem");
+        RSA.chiffrementFichier("MatteoRSADonnee.txt", "MatteoRSAChiffre.txt", 2048);
+        RSA.dechiffrementFichier("MatteoRSAChiffre.txt", "MatteoRSADechiffre.txt", 2048);
 
 }

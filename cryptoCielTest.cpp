@@ -17,8 +17,11 @@ int main()
         
         
                 * AES - (5) Question 6,7,8,9
-                
+        */
+
         AesGestion AES;
+
+        /*
         AES.GenerateAESKey();
         AES.SaveAESKeyToFile("ClefAES.txt");
         AES.EncryptFileAES256("Mess.txt", "EncryptAES.txt");
@@ -48,10 +51,16 @@ int main()
         RSA.chargementClefs("YouennRSAPublic.pem", "YouennRSAPrive.pem");
         RSA.chiffrementFichier("MatteoRSADonnee.txt", "MatteoRSAChiffre.txt", 2048);
         RSA.dechiffrementFichier("YouennRSAChiffre.txt", "MatteoRSADechiffre.txt", 2048);
-        */
+        
 
         RSA.chargementClefs("MatteoRSAPublic.pem", "MatteoRSAPrive.pem");
         RSA.chiffrementFichier("MatteoRSADonneeBinaire.txt", "MatteoRSAChiffreBinaire.txt", 2048);
         RSA.dechiffrementFichier("MatteoRSAChiffreBinaire.txt", "MatteoRSADechiffreBinaire.txt", 2048),
+        */
+
+
+        AES.GenerateAESKey();
+        AES.SaveAESKeyToFile("MatteoClefAESHybride.txt");
+        RSA.chiffreDansFichier("MatteoClefAESHybride.txt", "MatteoChiffreHybride.txt");
 
 }
